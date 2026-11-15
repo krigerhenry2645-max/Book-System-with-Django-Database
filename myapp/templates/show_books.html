@@ -1,0 +1,18 @@
+{% extends 'master.html' %}
+
+{% block title %}Show Books{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">All Books</h2>
+    {% for book in books %}
+    <h3>{{ book.title }}</h3>
+    <p>{{ book.isbn }}</p>
+    <a href="{% url 'edit_book' book.id %}" class="btn btn danger">Edit</a>
+    <a href="{% url 'delete_book' book.id %}" class="btn btn danger">Delete</a>
+    <hr>
+    {% endfor %}
+
+
+</div>
+{% endblock %}
