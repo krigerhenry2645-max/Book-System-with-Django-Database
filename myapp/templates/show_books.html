@@ -7,12 +7,19 @@
     <h2 class="mb-4">All Books</h2>
     {% for book in books %}
     <h3>{{ book.title }}</h3>
+
+    {% if book.cover %}
+        <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="max-width: 200px;">
+    {% else %}
+        <p class="text-muted">No cover available</p>
+    {% endif %}
+
     <p>{{ book.isbn }}</p>
-    <a href="{% url 'edit_book' book.id %}" class="btn btn danger">Edit</a>
-    <a href="{% url 'delete_book' book.id %}" class="btn btn danger">Delete</a>
+    {% if perms.myapp.delete_book %}
+    <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    <a href="{% url 'edit_book' book.id %}" class="btn btn-primary">Edit</a>
     <hr>
     {% endfor %}
-
-
 </div>
 {% endblock %}

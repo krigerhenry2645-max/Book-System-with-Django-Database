@@ -11,11 +11,20 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     category = models.CharField(choices=CATEGORIES, max_length=100)
     isbn = models.CharField(unique=True, max_length=15,null=True, blank=True)
+    cover = models.ImageField(upload_to='covers/',null=True, blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    cost = models.IntegerField()
+    cost = models.IntegerField(default=False)
     year = models.IntegerField()
     published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+    #python manage.py makemigrations
+    #python manage.py migrate
+
+    #python manage.py createsuperuser
+
+    #python manage.py runserver
